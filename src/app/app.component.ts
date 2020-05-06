@@ -10,10 +10,13 @@ export class AppComponent {
   constructor(){
     this.loadFile();
   }
-  public async loadFile() {
+  public loadFile() {
     let codeReader = new BrowserQRCodeReader();
-    let result = await codeReader.decodeFromImageUrl('/assets/chart.png').then();
-    console.info(result + 'a');
+    
+    let result =  codeReader.decodeFromImage(undefined, '/assets/chart.png')
+     .then((result: any) => console.log(result))
+     .catch(result => console.log(result));
+    
   }
 }
 /*
