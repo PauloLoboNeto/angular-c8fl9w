@@ -7,18 +7,13 @@ import { BrowserQRCodeReader } from "@zxing/library";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  public loadFile(i: any) {
-    const file = i.target.files[0];
-    console.info(i, file);
+  constructor(){
+    this.loadFile();
+  }
+  public async loadFile() {
     let codeReader = new BrowserQRCodeReader();
-    // let img = document.getElementById("file");
-    let result;
-    try {
-      result = codeReader.decodeFromImage(file);
-    } catch (err) {
-      console.error(err);
-    }
-    console.log(result);
+    let result = await codeReader.decodeFromImageUrl('/assets/chart.png').then();
+    console.info(result + 'a');
   }
 }
 /*
